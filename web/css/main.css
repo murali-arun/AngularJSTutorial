@@ -1,0 +1,13 @@
+.container{
+    width:800px;
+}
+
+.arrange {
+
+    width : 30%;
+    height : 30%;
+    border-style: solid;
+    border-width: medium;
+    float : left;
+}
+
