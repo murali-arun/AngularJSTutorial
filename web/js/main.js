@@ -1,12 +1,14 @@
-function myfunction(){
-    alert("ARUN")
-}
+
 
 var app = angular.module('myApp', []);
-app.controller('myCtrl', function($scope) {
+app.controller('myCtrl', function($scope, $window) {
     $scope.fName= "John";
     $scope.lName= "Doe";
     $scope.RName="Arun";
+    $scope.myfunction=function () {
+        stausFlag=$window.open("https://www.facebook.com","_self");
+    }
+
 });
 
 app.controller('myCtrl2', function($scope) {
