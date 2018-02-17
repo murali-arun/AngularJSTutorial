@@ -1,2 +1,2 @@
-# AngularJSTutorial
-Refreshing it for notes.
+# Guess the Color Game
+WIll be edited after finishing coding the game..
