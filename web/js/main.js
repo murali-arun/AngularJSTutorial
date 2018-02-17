@@ -1,31 +1,68 @@
 
 
 var app = angular.module('myApp', []);
-app.controller('myCtrl', function($scope, $window) {
-    $scope.fName= "John";
-    $scope.lName= "Doe";
-    $scope.RName="Arun";
-    $scope.myfunction=function () {
-        stausFlag=$window.open("https://www.facebook.com","_self");
-    }
-
-});
-
-app.controller('myCtrl2', function($scope) {
-    $scope.RName="Arun 2";
-    $scope.myCol="red";
-    $scope.myName=function(){
-        return $scope.RName='ARUN 3'
+app.controller('calculateKeyPressed', function($scope,getKeyPressed,keyPressModel) {
+    $scope.onKeyPressResult = "";
+    $scope.onKeyPress = function($event)
+    {
+        $scope.onKeyPressResult=$event.which;
+        $scope.
+        getKeyPressed.setValue( $scope.onKeyPressResult);
+        keyPressModel.setkeyPressModelFactory($scope.onKeyPressResult);
     }
 });
 
-
-
-app.controller('myArrayRepeat', function($scope) {
-    $scope.myArray=[
-        {name: 'ARUN 1 ', country: 'USA'},
-        {name: 'ARUN 2 ', country: 'USA'},
-        {name: 'ARUN 3 ', country: 'USA'},
-        {name: 'ARUN 4 ', country: 'USA'}
-    ];
+app.controller('ShowFirst', function($scope,getKeyPressed) {
+    $scope.getLatestvalue=function() {
+        $scope.one=getKeyPressed.getValue();
+    }
 });
+
+
+app.controller('ShowSecond', function($scope,keyPressModel){
+    $scope.fact=keyPressModel.getkeyPressModelFactory();
+    $scope.getLatestvalue=function() {
+        $scope.second=keyPressModel.getkeyPressModelFactory();
+    };
+
+});
+
+
+//this function gets the latest value but it does not update the variable on browser
+//unless it is called.
+app.service('getKeyPressed',function(){
+
+   var x=0,setValue,getValue;
+
+   var setValue=function(keyPress){
+       x=keyPress;
+   };
+
+   var getValue = function(){
+       return x;
+   };
+   return {setValue : setValue,
+        getValue : getValue} ;
+
+});
+
+app.factory('keyPressModel',function(){
+
+    var keypressed=0;
+    var factory={};
+
+    factory.setkeyPressModelFactory= function(value)
+    {
+        keypressed=value;
+    };
+
+    factory.getkeyPressModelFactory = function()
+    {
+        return keypressed;
+    };
+    return     factory;
+
+
+
+});
+

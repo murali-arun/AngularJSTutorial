@@ -8,74 +8,47 @@
 <link rel="stylesheet" href="/css/main.css">
 <body>
 
-<div class="container" data-ng-app="myApp" data-ng-controller="myCtrl" >
+<div data-ng-app="myApp" >
+    <div class="container">
 
-    <div class="arrange" id="one-one">
-        <input type="text">
-        <p>Name: </p>
-        <p>The name is {{RName}} </p>
-        <button type="button" ng-click="myfunction()">Try it NOW</button>
-        <p>My first expression: {{ 5 + 5 }}</p>
-        First Name: <input type="text" value="{{fName}}"><br>
-        Last Name: <input type="text" value="{{lName}}"> <br>
+        <div class="arrange" id="one-one" data-ng-controller="ShowFirst">
+        <button ng-click="getLatestvalue()"/>
+            <p>Color 1{{one}}</p>
 
-    </div>
-    <div class="arrange" id="one-two" data-ng-controller="myCtr2">
-        <input style="background-color:{{myCol}}" ;type="text" ng-model="myCol" ng-model="RName">
-        <p>Name: {{RName}}</p>
-        <p>The name is ({{myName()}}) </p>
-    </div>
-    <div class="arrange" id="one-three" data-ng-controller="myArrayRepeat">
-        <ul>
-            <li ng-repeat="x in myArray">
-                {{x.name + "---------------" + x.country}}
-            </li>
-        </ul>
-        <form name="myform">
-            Email:<input type="email" name="myAddress" ng-model="text">
-            <span ng-show="myform.myAddress.$error.email">Not a valid e-mail address</span>
-        </form>
+        </div>
 
-    </div>
-    <div class="arrange" id="two-one" data-ng-controller="myArrayRepeat">
-        <ul>
-            <li ng-repeat="x in myArray">
-                {{x.name + "---------------" + x.country}}
-            </li>
-        </ul>
-        <form name="myform">
-            Email:<input type="email" name="myAddress" ng-model="text">
-            <span ng-show="myform.myAddress.$error.email">Not a valid e-mail address</span>
-        </form>
+        <div class="arrange" id="one-three" data-ng-controller="ShowSecond">
+        <button ng-click="getLatestvalue();"/>
+            <p>Color 2  : {{second}}</p><br>
+            <p> Factory Value : {{fact}}</p>
+        </div>
+        <div class="arrange" id="two-one">
+            <p>Color 1</p>
+        </div>
+
+        <div class="arrange" id="two-two">
+            <p>Color 1</p>
+        </div>
+        <div class="arrange" id="two-three">
+            <p>Color 1</p>
+        </div>
+
 
     </div>
 
-    <div class="arrange" id="two-two" data-ng-controller="myArrayRepeat">
-        <ul>
-            <li ng-repeat="x in myArray">
-                {{x.name + "---------------" + x.country}}
-            </li>
-        </ul>
-        <form name="myform">
-            Email:<input type="email" name="myAddress" ng-model="text">
-            <span ng-show="myform.myAddress.$error.email">Not a valid e-mail address</span>
-        </form>
+    <div class="centreButton" id="centre-Button" data-ng-controller="calculateKeyPressed">
+        <label>Type something:
+            <input type="text"
+                   ng-keypress="onKeyPress($event)"/>
+        </label><br/>
+        <strong>KEY PRESS RESULT:</strong> {{onKeyPressResult}}
 
     </div>
-    <div class="arrange" id="two-three" data-ng-controller="myArrayRepeat">
-        <ul>
-            <li ng-repeat="x in myArray">
-                {{x.name + "---------------" + x.country}}
-            </li>
-        </ul>
-        <form name="myform">
-            Email:<input type="email" name="myAddress" ng-model="text">
-            <span ng-show="myform.myAddress.$error.email">Not a valid e-mail address</span>
-        </form>
 
+    <div class="score" id="score-Button">
+        <p>SCORE</p>
+    </div>
 
 </div>
-</div>
-
 </body>
 </html>
