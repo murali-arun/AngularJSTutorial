@@ -31,6 +31,9 @@ app.factory('keyPressModel', function ($log) {
         else if (value == 54) {
             keypressed = 6;
         }
+        else{
+            keypressed=0;
+        }
         //$log.info("Setter method--->"+ keypressed);
     };
 
@@ -84,8 +87,9 @@ app.controller('scoreBoard', function ($scope, randomKeyModel, keyPressModel, $l
             if (keyPressModel.getkeyPressModelFactory()!=null && randomKeyModel.getrandomKeyModel() == keyPressModel.getkeyPressModelFactory()) {
                 $scope.score = $scope.score + 1;
             }
-            keyPressModel.setkeyPressModelFactory(null);
-        }, 200);
+            keyPressModel.setkeyPressModelFactory(0);
+
+        }, 1100);
 
 });
 
