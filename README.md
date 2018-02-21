@@ -8,3 +8,6 @@ Bugs Known:
 The scores keep on increasing if random function generates same number twice.
 Sometime, the keyboard input is not taken because we are crossing the interval assigned to the function resposible for the score calculation.
 
+Sample Screen is : 
+
+![](https://github.com/murali-arun/GuessTheColorGame/blob/master/web/ScreenShot_sample.JPG)
