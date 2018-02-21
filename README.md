@@ -1,7 +1,7 @@
 # Guess the Color Game
 
 We will show boxes 1 to 6 colored randomly, and you have to input your number according to box highlighted. 
-Your score will be shown on the left.
+Your score will be shown on the left box and input will be shown in right box;
 
 
 Bugs Known:
