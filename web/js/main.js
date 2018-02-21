@@ -2,8 +2,9 @@ var app = angular.module('myApp', []);
 app.controller('calculateKeyPressed', function ($scope, keyPressModel) {
     $scope.onKeyPressResult = "";
     $scope.onKeyPress = function ($event) {
-        $scope.onKeyPressResult = $event.which;
-        keyPressModel.setkeyPressModelFactory($scope.onKeyPressResult);
+        keyPressModel.setkeyPressModelFactory($event.which);
+        $scope.onKeyPressResult = keyPressModel.getkeyPressModelFactory();
+        $scope.userInput="";
     }
 });
 
@@ -34,7 +35,7 @@ app.factory('keyPressModel', function ($log) {
         else{
             keypressed=0;
         }
-        //$log.info("Setter method--->"+ keypressed);
+
     };
 
     factory.getkeyPressModelFactory = function () {
@@ -47,18 +48,31 @@ app.factory('keyPressModel', function ($log) {
 
 app.factory('randomKeyModel', function ($log) {
 
-    var random = 0;
+    var speed = 1000;
     var randfactory = {};
-    var keypressed = 0;
+    var key = 1;
 
     randfactory.setrandomKeyModel = function (value) {
 
-        keypressed=value;
+        key=value;
     };
 
     randfactory.getrandomKeyModel = function () {
-        return keypressed;
+        return key;
     };
+
+    randfactory.setspeed = function (value) {
+        if(value == 10)
+            speed= 900;
+        else
+            speed = 1000;
+
+    };
+
+    randfactory.getspeed = function () {
+        return speed;
+    };
+
 
     return randfactory;
 
@@ -89,7 +103,7 @@ app.controller('scoreBoard', function ($scope, randomKeyModel, keyPressModel, $l
             }
             keyPressModel.setkeyPressModelFactory(0);
 
-        }, 1100);
+        }, 400);
 
 });
 
@@ -113,7 +127,7 @@ app.controller('RandomizeNumberInAll', function ($scope, $log, $interval, keyPre
                 }
             }
             //$log.info("ENTERED" + $scope.colorItem);
-        }, 1000);
+        }, 700);
 
 
     $scope.whichClass = function (box) {
@@ -131,33 +145,31 @@ app.controller('RandomizeNumberInAll', function ($scope, $log, $interval, keyPre
                 }
                 if (num == 2) {
 
-                    str = 'color-pink';
+                    str = 'color-blue';
                     break;
                 }
                 if (num == 3) {
 
-                    str = 'color-brown';
+                    str = 'color-pink';
                     break;
                 }
                 if (num == 4) {
 
-                    str = 'color-yellow';
+                    str = 'color-brown';
                     break;
                 }
                 if (num == 5) {
-                    str = 'color-blue';
+                    str = 'color-orange';
                     break;
                 }
                 if (num == 6) {
-                    str = 'color-brown';
+                    str = 'color-yellow';
                     break;
                 }
                 break;
             }
             else {
-
                 str = 'color-black';
-
             }
 
         }
