@@ -2,9 +2,7 @@ package com.ang.bean;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- * Created by armu0517 on 2/22/2018.
- */
+
 @XmlRootElement
 public class Random {
     int randomNumber;

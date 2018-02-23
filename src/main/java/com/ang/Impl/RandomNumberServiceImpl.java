@@ -3,9 +3,7 @@ package com.ang.Impl;
 import com.ang.bean.Random;
 import com.ang.service.RandomNumberService;
 
-/**
- * Created by armu0517 on 2/22/2018.
- */
+
 public class RandomNumberServiceImpl implements RandomNumberService{
 
     public Random RandomNumberGenerator() {
