@@ -5,13 +5,14 @@
 </head>
 <script src="/js/angular.min.js"></script>
 <script src="/js/main.js"></script>
+<script src="/js/angular-Resource.js"></script>
 <link rel="stylesheet" href="/css/main.css">
 <body>
 
 <div data-ng-app="myApp">
 
     <div class="container" data-ng-controller="RandomizeNumberInAll"
-         data-ng-init='colors=["red","blue","yellow","brown","black","orange"];randomize();'>
+             data-ng-init='colors=["red","blue","yellow","brown","black","orange"];randomize();'>
 
         <div class="arrange" id="one-one" ng-class="whichClass(1)">
 

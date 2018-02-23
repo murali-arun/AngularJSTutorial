@@ -1,10 +1,20 @@
-var app = angular.module('myApp', []);
-app.controller('calculateKeyPressed', function ($scope, keyPressModel) {
+/* Copyright (C) 2017 Arun Murali - All Rights Reserved
+ * You may use, distribute and modify this code under the
+ * terms of the LICENSE_2017 license, which unfortunately won't be
+ * written for another century.
+ *
+ * You should have received a copy of the LICENSE_2017  with
+ * this file. If not, please write to: arun.murali@outlook.com  :
+ */
+
+var app = angular.module('myApp', ['ngResource']);
+app.controller('calculateKeyPressed', function ($scope, keyPressModel, $log, $http, RandomNumberGenerate, randomKeyModel) {
     $scope.onKeyPressResult = "";
+    $scope.randomNum = 0;
     $scope.onKeyPress = function ($event) {
         keyPressModel.setkeyPressModelFactory($event.which);
         $scope.onKeyPressResult = keyPressModel.getkeyPressModelFactory();
-        $scope.userInput="";
+        $scope.userInput = "";
     }
 });
 
@@ -32,8 +42,8 @@ app.factory('keyPressModel', function ($log) {
         else if (value == 54) {
             keypressed = 6;
         }
-        else{
-            keypressed=0;
+        else {
+            keypressed = 0;
         }
 
     };
@@ -54,7 +64,7 @@ app.factory('randomKeyModel', function ($log) {
 
     randfactory.setrandomKeyModel = function (value) {
 
-        key=value;
+        key = value;
     };
 
     randfactory.getrandomKeyModel = function () {
@@ -62,8 +72,8 @@ app.factory('randomKeyModel', function ($log) {
     };
 
     randfactory.setspeed = function (value) {
-        if(value == 10)
-            speed= 900;
+        if (value == 10)
+            speed = 900;
         else
             speed = 1000;
 
@@ -78,9 +88,17 @@ app.factory('randomKeyModel', function ($log) {
 
 });
 
-app.service('RandomNumber', function ($log) {
+app.service('RandomNumber', function ($http, $log) {
 
-    var i = 0;
+    var rN = 0;
+    //this is called 2 second later..to be checked..
+    /*this.getRandomNumber = function () {
+        $http.get('/rest/random').then(function (response) {
+            $log.info( response.data);
+            rN = response.data;
+        });
+        return rN;
+    }*/
     this.getRandomNumber = function () {
         i = 0;
         i = Math.floor(Math.random() * 6) + 1
@@ -96,19 +114,18 @@ app.controller('scoreBoard', function ($scope, randomKeyModel, keyPressModel, $l
     var scoreCal =
         $interval(function () {
             //$log.info("rand" + randomKeyModel.getrandomKeyModel() );
-           // $log.info("keypressed" + keyPressModel.getkeyPressModelFactory() );
-            $log.info("score" + $scope.score );
-            if (keyPressModel.getkeyPressModelFactory()!=null && randomKeyModel.getrandomKeyModel() == keyPressModel.getkeyPressModelFactory()) {
+            // $log.info("keypressed" + keyPressModel.getkeyPressModelFactory() );
+            $log.info("score" + $scope.score);
+            if (keyPressModel.getkeyPressModelFactory() != null && randomKeyModel.getrandomKeyModel() == keyPressModel.getkeyPressModelFactory()) {
                 $scope.score = $scope.score + 1;
             }
             keyPressModel.setkeyPressModelFactory(0);
-
         }, 400);
 
 });
 
 
-app.controller('RandomizeNumberInAll', function ($scope, $log, $interval, keyPressModel, RandomNumber , randomKeyModel) {
+app.controller('RandomizeNumberInAll', function ($scope, $log, $interval, keyPressModel, RandomNumber, randomKeyModel) {
 
     $scope.colorItem = [0, 0, 0, 0, 0, 0];
     var controllerRandom = this;
@@ -116,7 +133,6 @@ app.controller('RandomizeNumberInAll', function ($scope, $log, $interval, keyPre
         $interval(function () {
             var number = RandomNumber.getRandomNumber();
             randomKeyModel.setrandomKeyModel(number);
-
             $scope.colorItem = [0, 0, 0, 0, 0, 0];
             for (i = 0; i < 6; i++) {
                 if (number == i + 1) {
@@ -178,6 +194,22 @@ app.controller('RandomizeNumberInAll', function ($scope, $log, $interval, keyPre
     }
 
 });
+
+app.factory('RandomNumberGenerate', function ($resource) {
+
+    return $resource('/rest/random', {}, {
+        query: {
+            method: 'GET',
+            params: {},
+            isArray: false,
+            transformResponse: function (data) {
+                return {responseData: data.toString()}
+            }
+
+        }
+    });
+});
+
 
 
 
