@@ -7,43 +7,72 @@
  * this file. If not, please write to: arun.murali@outlook.com  :
  */
 
-var app = angular.module('myApp', ['ngResource']);
+//var app = angular.module('myApp', ['ngResource', 'ngAnimate']);
 app.controller('calculateKeyPressed', function ($scope, keyPressModel, $log, $http, RandomNumberGenerate, randomKeyModel) {
     $scope.onKeyPressResult = "";
     $scope.randomNum = 0;
     $scope.onKeyPress = function ($event) {
-        keyPressModel.setkeyPressModelFactory($event.which);
+        keyPressModel.setkeyPressModelFactory($event.which,true);
         $scope.onKeyPressResult = keyPressModel.getkeyPressModelFactory();
         $scope.userInput = "";
     }
 });
+
+app.controller('calculateButtonPressed', function ($scope, keyPressModel, $log, $http, RandomNumberGenerate, randomKeyModel) {
+    $scope.onKeyPressResult = "";
+    $scope.randomNum = 0;
+    $scope.clickMe = function (userEntered) {
+        keyPressModel.setkeyPressModelFactory(userEntered,false);
+        $scope.onKeyPressResult = keyPressModel.getkeyPressModelFactory();
+        $scope.userInput = "";
+    }
+});
+
+app.controller('animateCheering', function ($scope, TotalScore, $interval) {
+    $scope.totalscore = 0;
+    $interval(function () {
+        if (TotalScore.getTotalScore() % 5 == 0) {
+            $scope.totalscore = true;
+        }
+        else {
+            $scope.totalscore = false;
+        }
+    }, 100);
+
+});
+
 
 app.factory('keyPressModel', function ($log) {
 
     var keypressed = 0;
     var factory = {};
 
-    factory.setkeyPressModelFactory = function (value) {
-        if (value == 49) {
-            keypressed = 1;
+    factory.setkeyPressModelFactory = function (value, condition) {
+        if (condition == true) {
+            if (value == 49) {
+                keypressed = 1;
+            }
+            else if (value == 50) {
+                keypressed = 2;
+            }
+            else if (value == 51) {
+                keypressed = 3;
+            }
+            else if (value == 52) {
+                keypressed = 4;
+            }
+            else if (value == 53) {
+                keypressed = 5;
+            }
+            else if (value == 54) {
+                keypressed = 6;
+            }
+            else {
+                keypressed = 0;
+            }
         }
-        else if (value == 50) {
-            keypressed = 2;
-        }
-        else if (value == 51) {
-            keypressed = 3;
-        }
-        else if (value == 52) {
-            keypressed = 4;
-        }
-        else if (value == 53) {
-            keypressed = 5;
-        }
-        else if (value == 54) {
-            keypressed = 6;
-        }
-        else {
-            keypressed = 0;
+        else{
+            keypressed=value;
         }
 
     };
@@ -88,39 +117,66 @@ app.factory('randomKeyModel', function ($log) {
 
 });
 
+app.factory('TotalScore', function () {
+
+    var totalScoreFactory = {};
+    var tscore = 0;
+    totalScoreFactory.setTotalScore = function (value) {
+        tscore = value;
+    };
+    totalScoreFactory.getTotalScore = function () {
+        return tscore;
+    };
+
+    return totalScoreFactory;
+
+});
 app.service('RandomNumber', function ($http, $log) {
 
     var rN = 0;
     //this is called 2 second later..to be checked..
-    /*this.getRandomNumber = function () {
+    this.getRandomNumber = function () {
         $http.get('/rest/random').then(function (response) {
-            $log.info( response.data);
+            $log.info(response.data);
             rN = response.data;
         });
         return rN;
-    }*/
-    this.getRandomNumber = function () {
-        i = 0;
-        i = Math.floor(Math.random() * 6) + 1
-        //$log.info(" I - - - > " + i);
-        return i;
-    }
+    };
+    /*this.getRandomNumber = function () {
+     i = 0;
+     i = Math.floor(Math.random() * 6) + 1
+     //$log.info(" I - - - > " + i);
+     return i;
+     }*/
 
 });
 
 
-app.controller('scoreBoard', function ($scope, randomKeyModel, keyPressModel, $log, $interval) {
+app.controller('scoreBoard', function ($scope, randomKeyModel, keyPressModel, $log, $interval, TotalScore) {
     $scope.score = 0;
-    var scoreCal =
-        $interval(function () {
-            //$log.info("rand" + randomKeyModel.getrandomKeyModel() );
-            // $log.info("keypressed" + keyPressModel.getkeyPressModelFactory() );
-            $log.info("score" + $scope.score);
-            if (keyPressModel.getkeyPressModelFactory() != null && randomKeyModel.getrandomKeyModel() == keyPressModel.getkeyPressModelFactory()) {
-                $scope.score = $scope.score + 1;
+    var scoreCal = 0;
+    var speedControllerValue = 1;
+    var speedMultiplier = 1;
+    $interval(function () {
+        $log.info("rand" + randomKeyModel.getrandomKeyModel());
+        $log.info("keypressed" + keyPressModel.getkeyPressModelFactory());
+        $log.info("score" + $scope.score);
+        if (keyPressModel.getkeyPressModelFactory() != null && randomKeyModel.getrandomKeyModel() > 0 && randomKeyModel.getrandomKeyModel() == keyPressModel.getkeyPressModelFactory()) {
+            $scope.score = $scope.score + 1;
+            TotalScore.setTotalScore($scope.score);
+            speedControllerValue = speedControllerValue + 1;
+            if (speedControllerValue / 10 > speedMultiplier) {
+                speedMultiplier = speedMultiplier + 1;
             }
-            keyPressModel.setkeyPressModelFactory(0);
-        }, 400);
+            if (speedControllerValue == 1) {
+                speedMultiplier = 1;
+            }
+        }
+        else {
+            speedControllerValue = speedControllerValue > 1 ? speedControllerValue - 1 : 1;
+        }
+        keyPressModel.setkeyPressModelFactory(0);
+    }, 350 + speedMultiplier * 50);
 
 });
 
@@ -144,7 +200,6 @@ app.controller('RandomizeNumberInAll', function ($scope, $log, $interval, keyPre
             }
             //$log.info("ENTERED" + $scope.colorItem);
         }, 700);
-
 
     $scope.whichClass = function (box) {
         var colorArray = [0, 0, 0, 0, 0, 0];

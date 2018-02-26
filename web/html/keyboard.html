@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <div class="container" data-ng-controller="RandomizeNumberInAll"
+         data-ng-init='colors=["red","blue","yellow","brown","black","orange"];randomize();'>
+
+        <div class="arrange" id="one-one" ng-class="whichClass(1)">
+
+        </div>
+        <div class="arrange" id="one-two" ng-class="whichClass(2) ">
+
+        </div>
+        <div class="arrange" id="one-three" ng-class="whichClass(3)">
+
+        </div>
+        <div class="arrange" id="two-one" ng-class="whichClass(4)">
+
+        </div>
+        <div class="arrange" id="two-two" ng-class="whichClass(5)">
+
+        </div>
+        <div class="arrange" id="two-three" ng-class="whichClass(6)">
+
+        </div>
+    </div>
+
+    <table>
+        <tr>
+            <td>
+            <div class="Buttons" id="allButtons" data-ng-controller="calculateButtonPressed">
+                <button ng-click="clickMe(1)" style="background-color: #a10aff;" class="Button">1</button>
+                <button ng-click="clickMe(2)" style="background-color: #ff14dc;" class="Button">2</button>
+                <button ng-click="clickMe(3)" style="background-color: #4722ff;" class="Button">3</button>
+                <button ng-click="clickMe(4)" style="background-color: #2fa54d;" class="Button">4</button>
+                <button ng-click="clickMe(5)" style="background-color: #fffd53;" class="Button">5</button>
+                <button ng-click="clickMe(6)" style="background-color: #ff8b20;" class="Button">6</button>
+            </div>
+            </td>
+            <td>
+            <div ng-show='score>0' class="scoreButton" id="score-Button" data-ng-controller="scoreBoard"
+                 ng-init="scoreCal()">
+                <p>{{score}}</p>
+            </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+</div>
+
+</body>
+</html>

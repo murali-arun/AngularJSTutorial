@@ -7,6 +7,12 @@
  * this file. If not, please write to: arun.murali@outlook.com  :
  */
 
+#mainContainer {
+    width: 2000px;
+    background-color: red;
+    height: 100%;
+}
+
 .container {
     width: 1500px;
     height: 500px;
@@ -16,6 +22,7 @@
     border-color: darkblue;
 
 }
+
 .arrange {
     width: 26%;
     height: 30%;
@@ -28,6 +35,7 @@
     margin-bottom: 50px;
 
 }
+
 .centreButton {
     width: 90px;
     height: 230px;
@@ -37,6 +45,7 @@
     padding-top: 0px;
     padding-right: 25px;
 }
+
 .centreInput {
     padding-left: 40px;
     width: 130px;
@@ -47,9 +56,10 @@
     font: 60px arial, sans-serif;
     background-color: dodgerblue;
     border-color: darkblue;
-    color : deepskyblue;
+    color: deepskyblue;
 
 }
+
 .score {
     width: 100px;
     height: 155px;
@@ -61,26 +71,78 @@
     font: 50px arial, sans-serif;
     background-color: greenyellow;
     border-color: green;
-    color : darkgreen;
+    color: darkgreen;
 }
+
 .color-red {
     background-color: #a10aff;
 }
+
 .color-blue {
     background-color: #ff14dc;
 }
+
 .color-pink {
     background-color: #4722ff;
 }
+
 .color-brown {
     background-color: #2fa54d;
 }
+
 .color-orange {
     background-color: #fffd53;
 }
+
 .color-yellow {
     background-color: #ff8b20;
 }
+
 .color-black {
     background-color: black;
+}
+
+.Buttons {
+    width: 400px;
+    /* height:120px; */
+    /* float: left; */
+    /* border-style: solid; */
+    border-width: 2px;
+    margin-top: 30px;
+    margin-left: 690px;
+    /* padding-bottom: 5px; */
+    /* padding-left:3px; */
+    /* padding-right:3px; */
+    /* padding-top:0px; */
+}
+
+.Button {
+    width: 100px;
+    height: 40px;
+    padding-bottom: 6px;
+}
+
+.scoreButton {
+    width: 60px;
+    height: 80px;
+    border-style: solid;
+    border-width: 2px;
+    margin-top: 30px;
+    /* margin-bottom: 0; */
+    font-size: 30px;
+    font-family: sans-serif;
+    background-color: greenyellow;
+    border-color: green;
+    color: darkgreen;
+    padding-left: 30px;
+}
+
+.arrangeScoreAndEntry {
+    width: 400px;
+    height: 400px;
+
+}
+
+th {
+    
 }
