@@ -32,20 +32,20 @@
     <table>
         <tr>
             <td>
-            <div class="Buttons" id="allButtons" data-ng-controller="calculateButtonPressed">
-                <button ng-click="clickMe(1)" style="background-color: #a10aff;" class="Button">1</button>
-                <button ng-click="clickMe(2)" style="background-color: #ff14dc;" class="Button">2</button>
-                <button ng-click="clickMe(3)" style="background-color: #4722ff;" class="Button">3</button>
-                <button ng-click="clickMe(4)" style="background-color: #2fa54d;" class="Button">4</button>
-                <button ng-click="clickMe(5)" style="background-color: #fffd53;" class="Button">5</button>
-                <button ng-click="clickMe(6)" style="background-color: #ff8b20;" class="Button">6</button>
-            </div>
+                <div class="Buttons" id="allButtons" data-ng-controller="calculateButtonPressed">
+                    <button ng-click="clickMe(1)" style="background-color: #a10aff;" class="Button">1</button>
+                    <button ng-click="clickMe(2)" style="background-color: #ff14dc;" class="Button">2</button>
+                    <button ng-click="clickMe(3)" style="background-color: #4722ff;" class="Button">3</button>
+                    <button ng-click="clickMe(4)" style="background-color: #2fa54d;" class="Button">4</button>
+                    <button ng-click="clickMe(5)" style="background-color: #fffd53;" class="Button">5</button>
+                    <button ng-click="clickMe(6)" style="background-color: #ff8b20;" class="Button">6</button>
+                </div>
             </td>
             <td>
-            <div ng-show='score>0' class="scoreButton" id="score-Button" data-ng-controller="scoreBoard"
-                 ng-init="scoreCal()">
-                <p>{{score}}</p>
-            </div>
+                <div ng-show='score>0' class="scoreButton" id="score-Button" data-ng-controller="scoreBoard"
+                     ng-init="scoreCal()">
+                    <p>{{score}}</p>
+                </div>
             </td>
         </tr>
     </table>
