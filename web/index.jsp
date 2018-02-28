@@ -2,13 +2,27 @@
 <html>
 <head>
     <title>GAME</title>
+    <script src="/js/AngularJSHeaderScripts/angular.min.js"></script>
+    <script src="/js/AngularJSHeaderScripts/angular-animate.min.js"></script>
+    <script src="/js/AngularJSHeaderScripts/angular-Resource.js"></script>
+    <script src="/js/AngularJSHeaderScripts/angular-route.js"></script>
+    <script src="/js/AngularJSHeaderScripts/require.js"></script>
+
+    <script src="/js/route/Route.js"></script>
+    <script src="/js/factory/RandomNumberFactory.js"></script>
+    <script src="/js/factory/RandomNumberGeneratorService.js"></script>
+
+    <script src="/js/services/RandomNumber.js"></script>
+    <script src="/js/factory/UserInputModel.js"></script>
+    <script src="/js/factory/TotalScoreFactory.js"></script>
+
+    <script src="/js/controllers/RandomColorGenerator.js"></script>
+    <script src="/js/controllers/FindTheKeyPressed.js"></script>
+    <script src="/js/controllers/FindTheButtonPressed.js"></script>
+    <script src="/js/controllers/ScoreBoard.js"></script>
+
 </head>
-<script src="/js/angular.min.js"></script>
-<script src="/js/angular-animate.min.js"></script>
-<script src="/js/angular-Resource.js"></script>
-<script src="/js/angular-route.js"></script>
-<script src="/js/route.js"></script>
-<script src="/js/main.js"></script>
+
 <link rel="stylesheet" href="/css/main.css">
 <body ng-app="myApp">
 <table>

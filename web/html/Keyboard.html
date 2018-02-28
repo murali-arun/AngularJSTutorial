@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<script src="/js/AngularJSHeaderScripts/angular.min.js"></script>
+    <script src="/js/AngularJSHeaderScripts/angular-animate.min.js"></script>
+    <script src="/js/AngularJSHeaderScripts/angular-Resource.js"></script>
+    <script src="/js/AngularJSHeaderScripts/angular-route.js"></script>
+    <script src="/js/controllers/RandomColorGenerator.js"></script>
+    <script src="/js/controllers/FindTheKeyPressed.js"></script>
+    <script src="/js/controllers/ScoreBoard.js"></script>
+    <script src="/js/factory/RandomNumberFactory.js"></script>
+    <script src="/js/factory/RandomNumberGeneratorService.js"></script>
+    <script src="/js/factory/TotalScoreFactory.js"></script>
+    <script src="/js/factory/UserInputModel.js"></script>
+    <script src="/js/services/RandomNumber.js"></script>-->
+</head>
+<body>
+<div>
+    <div class="container" data-ng-controller="RandomColorGenerator"
+         data-ng-init='colors=["red","blue","yellow","brown","black","orange"];randomize();'>
+
+        <div class="arrange" id="one-one" ng-class="findTheClassToBeSet(1)">
+
+        </div>
+        <div class="arrange" id="one-two" ng-class="findTheClassToBeSet(2) ">
+
+        </div>
+        <div class="arrange" id="one-three" ng-class="findTheClassToBeSet(3)">
+
+        </div>
+        <div class="arrange" id="two-one" ng-class="findTheClassToBeSet(4)">
+
+        </div>
+        <div class="arrange" id="two-two" ng-class="findTheClassToBeSet(5)">
+
+        </div>
+        <div class="arrange" id="two-three" ng-class="findTheClassToBeSet(6)">
+
+        </div>
+    </div>
+
+    <table>
+        <tr>
+            <td>
+                <div class="Buttons" id="allButtons" data-ng-controller="FindTheButtonPressed">
+                    <button ng-click="UserPressed(1)" style="background-color: #a10aff;" class="Button">1</button>
+                    <button ng-click="UserPressed(2)" style="background-color: #ff14dc;" class="Button">2</button>
+                    <button ng-click="UserPressed(3)" style="background-color: #4722ff;" class="Button">3</button>
+                    <button ng-click="UserPressed(4)" style="background-color: #2fa54d;" class="Button">4</button>
+                    <button ng-click="UserPressed(5)" style="background-color: #fffd53;" class="Button">5</button>
+                    <button ng-click="UserPressed(6)" style="background-color: #ff8b20;" class="Button">6</button>
+                </div>
+            </td>
+            <td>
+                <div ng-show='score>0' class="scoreButton" id="score-Button" data-ng-controller="scoreBoard"
+                     ng-init="scoreCalculator()">
+                    <p>{{score}}</p>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+</div>
+
+</body>
+</html>
